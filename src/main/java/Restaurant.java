@@ -1,4 +1,5 @@
 import org.sql2o.*;
+import java.util.List;
 // import stuff
 
 public class Restaurant {
@@ -16,6 +17,13 @@ public class Restaurant {
 
   public int getId() {
     return id;
+  }
+
+  public static List<Restaurant> all() {
+    String sql = "SELECT * FROM restaurants";
+    try (Connection con = DB.sql2o.open()) {
+        return con.createQuery(sql).executeAndFetch(Restaurant.class);
+    }
   }
 
   public void save() {
@@ -39,4 +47,34 @@ public class Restaurant {
     }
   }
 
+  public static Restaurant find(int id) {
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM restaurants WHERE id=:id";
+      Restaurant restaurant = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Restaurant.class);
+      return restaurant;
+    }
+  }
+
+
+  public void update(String newName) {
+    try(Connection con = DB.sql2o.open()) {
+      //id = this.id;
+      String sql = "UPDATE restaurants SET name=:name WHERE id=:id";
+      con.createQuery(sql)
+        .addParameter("name", newName)
+        .addParameter("id", 1)
+        .executeUpdate();
+      }
+  }
+
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM restaurants WHERE id=:id";
+      con.createQuery(sql)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
 }
