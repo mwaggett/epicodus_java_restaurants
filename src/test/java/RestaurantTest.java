@@ -63,4 +63,12 @@ public class RestaurantTest {
     assertEquals("Pok Pok", Restaurant.all().get(0).getName());
   }
 
+  @Test
+  public void delete_deletesRestaurantInDatabase_true() {
+    Restaurant myRestaurant = new Restaurant("Lardo");
+    myRestaurant.save();
+    myRestaurant.delete();
+    assertEquals(0, Restaurant.all().size());
+  }
+
 }
