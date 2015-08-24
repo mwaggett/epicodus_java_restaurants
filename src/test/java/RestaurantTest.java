@@ -36,7 +36,7 @@ public class RestaurantTest {
   public void save_assignsIdToObject() {
     Restaurant myRestaurant = new Restaurant("Lardo");
     myRestaurant.save();
-    assertEquals(1, myRestaurant.getId());
+    assertEquals(Restaurant.all().get(0).getId(), myRestaurant.getId());
   }
 
   @Test
@@ -48,11 +48,19 @@ public class RestaurantTest {
   }
 
   @Test
-  public void update_updatesRestaurantInDatabase_true() {
+  public void update_updatesRestaurantObjectInMemory_true() {
     Restaurant myRestaurant = new Restaurant("Lardo");
     myRestaurant.save();
     myRestaurant.update("Pok Pok");
     assertEquals("Pok Pok", myRestaurant.getName());
+  }
+
+  @Test
+  public void update_updatesRestaurantInDatabase_true() {
+    Restaurant myRestaurant = new Restaurant("Lardo");
+    myRestaurant.save();
+    myRestaurant.update("Pok Pok");
+    assertEquals("Pok Pok", Restaurant.all().get(0).getName());
   }
 
 }

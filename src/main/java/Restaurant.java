@@ -59,12 +59,12 @@ public class Restaurant {
 
 
   public void update(String newName) {
+    this.name = newName;
     try(Connection con = DB.sql2o.open()) {
-      //id = this.id;
       String sql = "UPDATE restaurants SET name=:name WHERE id=:id";
       con.createQuery(sql)
         .addParameter("name", newName)
-        .addParameter("id", 1)
+        .addParameter("id", id)
         .executeUpdate();
       }
   }
