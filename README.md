@@ -1,34 +1,37 @@
-# Application Name
+# Restaurants ~UNFINISHED~
 
-##### _{Brief description of application}, {Date of current version}_
+##### _Database practice for Epicodus, 24 August 2015_
 
-#### By **Molly Waggett**
+#### By **Momo Ozawa & Molly Waggett**
 
 ## Description
 
-{This is a detailed description of your application. Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. Do you want other developers to use this code in their apps? Talk about things like that here in simple terms.}
+Database of restaurants. _**This app does not yet have a web interface. The database should also ultimately include a cuisines table so that we may display what cuisine each restaurant serves.**_
 
 ## Setup
 
-* Clone this repository.
-* Using the command line, navigate to the top level of the cloned directory.
-* Make sure you have gradle installed. Then run the following command in your terminal:
-* _gradle run_
-* Go to localhost:4567.
-* Go!
+* Set up the database in PostgreSQL by running the following commands in your terminal:
+```
+  psql
+  CREATE DATABASE restaurant;
+  \c restaurant;
+  CREATE TABLE restaurants (id serial PRIMARY KEY, name varchar);
+```
+* If you wish to run tests, create a test database:
+```
+  CREATE DATABASE restaurant_test WITH TEMPLATE restaurant;
+```
 
 ## Technologies Used
 
 * Java
-* Spark
-* Velocity
+* PostgreSQL
 * Gradle
 * JUnit
-* FluentLenium
 
 ### Legal
 
-Copyright (c) 2015 **Molly Waggett**
+Copyright (c) 2015 **Momo Ozawa & Molly Waggett**
 
 This software is licensed under the MIT license.
 
